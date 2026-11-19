@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "source": "DEMO-ERP",
+  "data_class": "synthetic",
+  "extracted_at": "2026-11-01T07:00:00Z",
+  "records": [
+    {
+      "external_key": "DEMO-ERP-504",
+      "name": "Ash Tarn Ceramics",
+      "country": "IE",
+      "registration": "DEMO-R9504",
+      "category": "Materials"
+    }
+  ]
+}

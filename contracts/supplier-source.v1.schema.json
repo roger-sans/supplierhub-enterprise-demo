@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:supplierhub:contracts:supplier-source:1.0",
+  "$defs": {
+    "SourceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "external_key": {
+          "pattern": "^DEMO-[A-Z0-9-]{4,24}$",
+          "title": "External Key",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 3,
+          "title": "Name",
+          "type": "string"
+        },
+        "country": {
+          "enum": [
+            "BE",
+            "DE",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "IE",
+            "NL",
+            "PL",
+            "PT",
+            "SE"
+          ],
+          "title": "Country",
+          "type": "string"
+        },
+        "registration": {
+          "pattern": "^DEMO-[A-Z0-9]{4,12}$",
+          "title": "Registration",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Components",
+            "Materials",
+            "Packaging",
+            "Industrial services",
+            "Freight"
+          ],
+          "title": "Category",
+          "type": "string"
+        }
+      },
+      "required": [
+        "external_key",
+        "name",
+        "country",
+        "registration",
+        "category"
+      ],
+      "title": "SourceRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "1.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "DEMO-ERP",
+        "DEMO-CATALOG"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "data_class": {
+      "const": "synthetic",
+      "title": "Data Class",
+      "type": "string"
+    },
+    "extracted_at": {
+      "format": "date-time",
+      "title": "Extracted At",
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/SourceRecord"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "source",
+    "data_class",
+    "extracted_at",
+    "records"
+  ],
+  "title": "SourceEnvelope",
+  "type": "object"
+}

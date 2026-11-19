@@ -1,0 +1,18 @@
+services:
+  supplierhub:
+    build: .
+    ports:
+      - "127.0.0.1:${SUPPLIERHUB_PORT:-8000}:8000"
+    volumes:
+      - supplierhub-state:/state
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/api/health', timeout=2).close()"]
+      interval: 5s
+      timeout: 3s
+      retries: 8
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  supplierhub-state:

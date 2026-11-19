@@ -1,0 +1,36 @@
+-- Run in a disposable database with a role scoped to the synthetic demo.
+CREATE SCHEMA IF NOT EXISTS SUPPLIERHUB_DEMO;
+USE SCHEMA SUPPLIERHUB_DEMO;
+
+CREATE STAGE IF NOT EXISTS SUPPLIERHUB_STAGE;
+CREATE FILE FORMAT IF NOT EXISTS SUPPLIERHUB_CSV
+    TYPE = CSV
+    SKIP_HEADER = 1
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+    EMPTY_FIELD_AS_NULL = TRUE;
+
+CREATE TABLE IF NOT EXISTS DIM_QUALIFIED_SUPPLIER (
+    as_of DATE NOT NULL,
+    supplier_id VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    country VARCHAR(2) NOT NULL,
+    category VARCHAR NOT NULL,
+    segment VARCHAR NOT NULL,
+    risk VARCHAR NOT NULL,
+    payment_days NUMBER(3,0) NOT NULL,
+    currency VARCHAR(3) NOT NULL,
+    PRIMARY KEY (as_of, supplier_id)
+);
+
+CREATE TABLE IF NOT EXISTS FACT_SUPPLIER_MONTH (
+    supplier_id VARCHAR NOT NULL,
+    period DATE NOT NULL,
+    deliveries NUMBER(12,0) NOT NULL,
+    on_time NUMBER(12,0) NOT NULL,
+    inspected NUMBER(12,0) NOT NULL,
+    accepted NUMBER(12,0) NOT NULL,
+    checks NUMBER(12,0) NOT NULL,
+    compliant NUMBER(12,0) NOT NULL,
+    observed_at TIMESTAMP_TZ NOT NULL,
+    PRIMARY KEY (supplier_id, period)
+);

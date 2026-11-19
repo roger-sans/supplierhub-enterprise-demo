@@ -1,0 +1,5 @@
+*
+!requirements.txt
+!supplierhub/
+!supplierhub/**
+**/__pycache__

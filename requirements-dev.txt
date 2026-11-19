@@ -1,0 +1,7 @@
+-r requirements.txt
+httpx2==2.16.2
+jsonschema==4.26.0
+playwright==1.62.0
+pytest==9.2.0
+sqlglot==30.33.0
+duckdb==1.5.4

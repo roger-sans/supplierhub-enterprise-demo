@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:supplierhub:contracts:qualified-suppliers:1.0",
+  "$defs": {
+    "ProductRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "supplier_id": {
+          "pattern": "^SUP-[A-Z0-9]{3,12}$",
+          "title": "Supplier Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 3,
+          "title": "Name",
+          "type": "string"
+        },
+        "country": {
+          "enum": [
+            "BE",
+            "DE",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "IE",
+            "NL",
+            "PL",
+            "PT",
+            "SE"
+          ],
+          "title": "Country",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Components",
+            "Materials",
+            "Packaging",
+            "Industrial services",
+            "Freight"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "segment": {
+          "enum": [
+            "standard",
+            "preferred",
+            "strategic"
+          ],
+          "title": "Segment",
+          "type": "string"
+        },
+        "risk": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Risk",
+          "type": "string"
+        },
+        "payment_days": {
+          "maximum": 180,
+          "minimum": 0,
+          "title": "Payment Days",
+          "type": "integer"
+        },
+        "currency": {
+          "enum": [
+            "EUR",
+            "GBP",
+            "SEK"
+          ],
+          "title": "Currency",
+          "type": "string"
+        }
+      },
+      "required": [
+        "supplier_id",
+        "name",
+        "country",
+        "category",
+        "segment",
+        "risk",
+        "payment_days",
+        "currency"
+      ],
+      "title": "ProductRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "1.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "product": {
+      "const": "qualified-suppliers",
+      "title": "Product",
+      "type": "string"
+    },
+    "data_class": {
+      "const": "synthetic",
+      "title": "Data Class",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date",
+      "title": "As Of",
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/ProductRecord"
+      },
+      "title": "Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "product",
+    "data_class",
+    "as_of",
+    "records"
+  ],
+  "title": "ProductEnvelope",
+  "type": "object"
+}

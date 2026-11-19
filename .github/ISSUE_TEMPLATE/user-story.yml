@@ -1,0 +1,23 @@
+name: User story
+description: Propose an outcome for a SupplierHub consumer
+title: "[Story] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: User and business outcome
+      description: Describe the user, the decision they make and why the outcome matters.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Include a positive path, an edge case and the role accepting the outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and contract impact
+      description: List dependencies, policy or contract changes, and unresolved decisions.
